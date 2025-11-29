@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: llm-quiz-solver
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: EMAIL
+        sync: false
+      - key: SECRET
+        sync: false
+      - key: PORT
+        value: 7860
+    healthCheckPath: /health
