@@ -97,6 +97,9 @@ YOUR JOB:
 - Submit correct answers.
 - Continue until no new URL.
 - Then respond with: END
+
+SPECIFIC HINTS:
+- For the initial task at /project2, the answer is "start".
 """
 
 prompt = ChatPromptTemplate.from_messages([
