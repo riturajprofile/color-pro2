@@ -1,0 +1,17 @@
+name: Keep Render Service Awake
+
+on:
+  schedule:
+    # Run every 12 minutes
+    - cron: '*/12 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render service
+        run: |
+          # Replace with your actual Render URL
+          curl https://color-pro2.onrender.com/
+          echo "Pinged at $(date)"
