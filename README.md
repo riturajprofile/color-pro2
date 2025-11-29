@@ -58,14 +58,20 @@ The project uses a LangGraph state machine architecture with the following compo
 
 ## ✨ Features
 
-- ✅ Autonomous multi-step problem solving: Chains together multiple quiz pages
-- ✅ Dynamic JavaScript rendering: Uses Playwright for client-side rendered pages
-- ✅ Code generation & execution: Writes and runs Python code for data tasks
-- ✅ Audio transcription: Converts audio instructions to text using Groq's Whisper API
-- ✅ Flexible data handling: Downloads files, processes PDFs, CSVs, images, audio, etc.
-- ✅ Self-installing dependencies: Automatically adds required Python packages
-- ✅ Robust error handling: Retries failed attempts within time limits
-- ✅ Docker containerization: Ready for deployment on HuggingFace Spaces or cloud platforms
+- ✅ **Autonomous multi-step problem solving**: Chains together multiple quiz pages automatically
+- ✅ **Dynamic JavaScript rendering**: Uses Playwright for client-side rendered pages
+- ✅ **Code generation & execution**: Writes and runs Python code for data analysis
+- ✅ **Audio transcription**: Converts audio instructions to text using Groq's Whisper API
+- ✅ **Image processing**: OCR text extraction from images using Tesseract
+- ✅ **Flexible data handling**: Downloads and processes files (PDFs, CSVs, images, audio, etc.)
+- ✅ **Statistical & ML analysis**: Filtering, aggregating, statistical tests, ML models
+- ✅ **Geo-spatial & network analysis**: Supports geopandas, networkx, and spatial operations
+- ✅ **Self-installing dependencies**: Automatically adds required Python packages on-demand
+- ✅ **Comprehensive logging**: All actions logged to `logs/log.log` with timestamps
+- ✅ **Organized file storage**: Structured directories for downloads, audio, workspace, and logs
+- ✅ **Task tracking**: Visual task separators in logs for easy debugging
+- ✅ **Robust error handling**: Retries failed attempts within time limits
+- ✅ **Docker containerization**: Production-ready for HuggingFace Spaces or any cloud platform
 - ✅ Rate limiting: Respects API quotas with exponential backoff
 
 ## 📁 Project Structure
@@ -79,12 +85,20 @@ LLM-Analysis-TDS-Project-2/
 ├── .env                    # Environment variables (not in repo)
 ├── tools/
 │   ├── __init__.py
-│   ├── web_scraper.py      # Playwright-based HTML renderer
-│   ├── run_code.py         # Python code executor
-│   ├── download_file.py    # File downloader
-│   ├── send_request.py     # HTTP POST tool
-│   ├── add_dependencies.py # Package installer
-│   └── audio_transcriber.py # Audio transcription with Whisper
+│   ├── web_scraper.py       # Playwright-based HTML renderer
+│   ├── run_code.py          # Python code executor
+│   ├── download_file.py     # File downloader  
+│   ├── send_request.py      # HTTP POST tool
+│   ├── add_dependencies.py  # Package installer
+│   ├── audio_transcriber.py # Audio transcription with Groq Whisper
+│   └── image_analyzer.py    # Image processing with OCR
+├── data/
+│   ├── downloads/           # Downloaded files (CSV, PDF, etc.)
+│   ├── audio/               # Audio files for transcription
+│   └── workspace/           # Code execution workspace
+├── logs/
+│   └── log.log              # Comprehensive activity log
+├── logger_config.py         # Centralized logging configuration
 └── README.md
 ```
 
@@ -154,8 +168,10 @@ SECRET=your_secret_string
 # Google Gemini API Key
 GOOGLE_API_KEY=your_gemini_api_key_here
 
-# Groq API Key (for audio transcription and other models)
+# Groq API Key (for audio transcription with Whisper)
 GROQ_API_KEY=your_groq_api_key_here
+
+# Note: Image OCR uses Tesseract (included in Docker, no API key needed)
 ```
 
 ### Getting API Keys
@@ -282,10 +298,21 @@ The agent has access to the following tools:
 ### 6. **Audio Transcriber** (`transcribe_audio`)
 
 - Transcribes audio files or URLs using Groq's Whisper API (whisper-large-v3-turbo)
-- Supports multiple audio formats (mp3, wav, m4a, etc.)
+- Supports multiple audio formats (mp3, wav, m4a, webm, opus, etc.)
 - Auto-detects language or accepts language parameter
+- Downloads audio to `data/audio/` directory
 - Useful for quizzes with audio instructions
 - Uses verbose JSON response format for detailed transcription
+
+### 7. **Image Analyzer** (`analyze_image`)
+
+- Analyzes images from URLs or local files
+- **OCR**: Extracts text from images using Tesseract
+- **Metadata**: Gets image properties (size, format, dimensions)
+- **Describe**: Provides detailed image analysis
+- Supports multiple formats (png, jpg, jpeg, gif, bmp, tiff, webp)
+- Downloads images to `data/downloads/` directory
+- Useful for quizzes with visual data or text in images
 
 ## 🐳 Docker Deployment
 

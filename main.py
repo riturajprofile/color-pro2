@@ -22,16 +22,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 START_TIME = time.time()
-@app.get("/health")
-def healthz():
-    """Simple liveness check."""
+
+@app.get("/")
+def root():
+    """Simple liveness check at root endpoint."""
     return {
         "status": "ok",
         "uptime_seconds": int(time.time() - START_TIME)
     }
 
-@app.post("/solve")
-async def solve(request: Request, background_tasks: BackgroundTasks):
+@app.post("/hitme")
+async def hitme(request: Request, background_tasks: BackgroundTasks):
     try:
         data = await request.json()
     except Exception:

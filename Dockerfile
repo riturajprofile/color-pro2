@@ -1,3 +1,24 @@
+# ==============================================================================
+# LLM Analysis - Autonomous Quiz Solver Agent
+# ==============================================================================
+# This Dockerfile builds a production-ready container with:
+# - Python 3.12 runtime
+# - Playwright (for web scraping with JavaScript rendering)
+# - Tesseract OCR (for image text extraction)
+# - UV package manager (for fast dependency management)
+# - All project dependencies (LangGraph, LangChain, Groq, Gemini, etc.)
+# - Organized file structure (data/downloads, data/audio, data/workspace, logs)
+#
+# Capabilities:
+# - 7 specialized tools (web scraping, code execution, file download, HTTP POST,
+#   dependency installation, audio transcription, image analysis)
+# - Autonomous multi-step quiz solving
+# - Audio transcription via Groq Whisper
+# - Image OCR via Tesseract
+# - Data analysis (filtering, ML, geo-spatial, network analysis)
+# - Comprehensive logging to logs/log.log
+# ==============================================================================
+
 FROM python:3.12-slim
 
 # --- System deps required by Playwright browsers and Tesseract OCR ---
