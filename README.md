@@ -77,7 +77,7 @@ The project uses a LangGraph state machine architecture with the following compo
 ## 📁 Project Structure
 
 ```
-LLM-Analysis-TDS-Project-2/
+color-pro2/
 ├── agent.py                # LangGraph state machine & orchestration
 ├── main.py                 # FastAPI server with /solve endpoint
 ├── pyproject.toml          # Project dependencies & configuration
@@ -113,8 +113,8 @@ LLM-Analysis-TDS-Project-2/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/riturajprofile/LLM-Analysis-TDS-Project-2.git
-cd LLM-Analysis-TDS-Project-2
+git clone https://github.com/riturajprofile/color-pro2.git
+cd color-pro2
 ```
 
 ### Step 2: Install Dependencies
@@ -416,6 +416,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 **Author**: Rituraj  
 **Course**: Tools in Data Science (TDS)  
-**Repository**: [GitHub](https://github.com/riturajprofile/LLM-Analysis-TDS-Project-2)
+**Repository**: [GitHub](https://github.com/riturajprofile/color-pro2)
 
 For questions or issues, please open an issue on the GitHub repository.
